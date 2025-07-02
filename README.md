@@ -1,136 +1,140 @@
-# NBA High-Scorer Predictor
+# 🏀 NBA High-Scorer Predictor
 
-An end-to-end machine learning project that analyzes NBA player box-score statistics to predict whether a player will score 20 or more points in a single game. Built with Python, scikit-learn, and Streamlit for an interactive demo.
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/) [![Streamlit](https://img.shields.io/badge/Streamlit-App-orange)](https://github.com/VictoriaRBrito/nba-highscorer-predictor)
 
----
-
-## Table of Contents
-
-- [Project Overview](#project-overview)  
-- [Features](#features)  
-- [Installation](#installation)  
-- [Usage](#usage)  
-  - [Analysis Notebook](#analysis-notebook)  
-  - [Streamlit App](#streamlit-app)  
-- [Project Structure](#project-structure)  
-- [Modeling Pipeline](#modeling-pipeline)  
-- [Threshold & Prediction](#threshold--prediction)  
-- [Contributing](#contributing)  
-- [License](#license)  
+Predict whether an NBA player will drop **20+ points** in a game, end-to-end—from data cleaning to a live Streamlit demo! 🚀
 
 ---
 
-## Project Overview
+## 📋 Table of Contents
 
-This project demonstrates a full data-science workflow, from raw data ingestion through model deployment:
-
-1. **Data Cleaning & EDA**: Load NBA box-score data, inspect data types, handle missing values, and perform exploratory analysis.  
-2. **Feature Engineering**: Convert performance stats (minutes, shooting percentages, rebounds, assists, etc.) to numeric form and create a binary target (`HighScorer`) for 20+ point games.  
-3. **Modeling & Tuning**: Train a Logistic Regression baseline, remove leaking features, perform stratified cross-validation, and benchmark with a Random Forest.  
-4. **Threshold Selection**: Optimize the decision threshold to maximize F1 score, balancing precision and recall.  
-5. **Serialization & Deployment**: Serialize the final model, feature list, and threshold; wrap inference logic in a Python module; and build a Streamlit app for interactive predictions.
-
----
-
-## Features
-
-- **Accurate Predictions**: Classify high-scoring performances (20+ points) with > 97% F1 score.  
-- **Flexible Thresholding**: Customize probability cutoff to meet precision/recall requirements.  
-- **Interactive Demo**: Streamlit app accepts CSV uploads and displays predictions with probabilities.  
-- **Reusable Code**: Clear `src/inference.py` module for loading artifacts and making predictions.  
+- [🌟 Features](#-features)  
+- [⚙️ Installation](#️-installation)  
+- [🚀 Quick Start](#-quick-start)  
+- [🛠️ Usage](#️-usage)  
+  - [Notebook](#notebook)  
+  - [Web App](#web-app)  
+- [📂 Project Structure](#-project-structure)  
+- [🔍 Modeling Pipeline](#-modeling-pipeline)  
+- [🔢 Threshold & Prediction](#-threshold--prediction)  
+- [🤝 Contributing](#-contributing)  
+- [📄 License](#-license)  
 
 ---
 
-## Installation
+## 🌟 Features
 
-1. **Clone the repository**  
+- 🎯 **High Accuracy:** F1-score > 0.93 for identifying 20+ point games  
+- ⚖️ **Custom Thresholding:** Optimize precision vs. recall (default cutoff = 0.40)  
+- 🖥️ **Interactive Demo:** Streamlit app for live CSV uploads & predictions  
+- 🔄 **Reusable Module:** Clean `src/inference.py` for easy integration  
+- 💾 **Serialization:** One-click model/feature/threshold loading  
+
+---
+
+## ⚙️ Installation
+
+```bash
+# 1. Clone
+git clone https://github.com/VictoriaRBrito/nba-highscorer-predictor.git
+cd nba-highscorer-predictor
+
+# 2. Virtual env
+python -m venv .venv
+source .venv/bin/activate    # macOS/Linux
+.venv\Scripts\activate       # Windows
+
+# 3. Dependencies
+pip install -r requirements.txt
+```
+
+---
+
+## 🚀 Quick Start
+
+1. **Place** your full dataset `nba_stats.csv` in `data/`  
+2. **Run** the analysis notebook:
    ```bash
-   git clone https://github.com/yourusername/nba-highscorer-predictor.git
-   cd nba-highscorer-predictor
+   jupyter notebook notebooks/analysis.ipynb
    ```
-
-2. **Create and activate a virtual environment**  
-   ```bash
-   python -m venv .venv
-   source .venv/bin/activate   # macOS/Linux
-   .venv\Scripts\activate      # Windows
-   ```
-
-3. **Install dependencies**  
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. **Download the full dataset**  
-   Place `nba_stats.csv` in the `data/` folder. An example CSV is provided in `data/example_nba_stats.csv`.
-
----
-
-## Usage
-
-### Analysis Notebook
-
-1. Open `notebooks/analysis.ipynb` in VS Code or Jupyter.  
-2. Follow the sections to load data, perform EDA, train and evaluate models, and serialize artifacts.
-
-### Streamlit App
-
-1. Run the app:  
+3. **Launch** the demo app:
    ```bash
    streamlit run app.py
    ```
-2. Upload a CSV file (one or more rows of player stats).  
-3. View the returned “HighScorer” predictions and probabilities in your browser.
 
 ---
 
-## Project Structure
+## 🛠️ Usage
+
+### Notebook
+
+- Walk through data cleaning, EDA, model training & tuning.  
+- Sections are clearly annotated for easy follow-along.  
+
+### Web App
+
+1. Upload a CSV (one or more rows of player stats).  
+2. View predicted **Probability** and **HighScorer** label per row.  
+3. 🎉 Share insights with coaches, analysts, or friends!
+
+---
+
+## 📂 Project Structure
 
 ```
 nba-highscorer-predictor/
-├── README.md
-├── requirements.txt
-├── .gitignore
-├── data/
+├── 📄 README.md
+├── 🐍 requirements.txt
+├── 🚫 .gitignore
+├── 🗄 data/
 │   ├── nba_stats.csv
 │   └── example_nba_stats.csv
-├── notebooks/
+├── 📓 notebooks/
 │   └── analysis.ipynb
-├── models/
+├── 💾 models/
 │   ├── highscorer_model.pkl
 │   ├── features_list.pkl
 │   └── threshold.pkl
-├── src/
+├── 📦 src/
 │   └── inference.py
-└── app.py
+└── 🌐 app.py
 ```
 
 ---
 
-## Modeling Pipeline
+## 🔍 Modeling Pipeline
 
-1. **Data Cleaning**: Inspect `df.dtypes`, convert object columns (e.g. `"FG%"`) to numeric, handle missing values.  
-2. **Target Creation**: Create `HighScorer` = 1 if `PTS >= 20`, else 0.  
-3. **Feature Selection**: Use key stats (`MP`, `FGA`, `FG%`, `3PA`, `3P%`, `FTA`, `FT%`, `TRB`, `AST`, `STL`, `BLK`, `TOV`).  
-4. **Train-Test Split**: Stratified 80/20 split with `random_state=42`.  
-5. **Baseline Model**: Logistic Regression → evaluate accuracy, confusion matrix, classification report, ROC AUC.  
-6. **Refinement**: Drop leaking features, tune hyperparameters via `GridSearchCV`, benchmark with Random Forest.  
-
----
-
-## Threshold & Prediction
-
-- **Optimal Threshold**: 0.40 maximizes F1 score (~0.93), balancing precision (0.91) and recall (0.95) on the test set.  
-- **Inference**: Use `src/inference.py` functions to load the model, feature list, and threshold, and generate predictions via `predict_highscorer()`.
+1. **Data Cleaning & EDA**  
+2. **Target Creation:** `HighScorer = 1 if PTS ≥ 20`  
+3. **Feature Selection:** key stats (MP, FGA, FG%, 3PA, 3P%, FTA, FT%, TRB, AST, STL, BLK, TOV)  
+4. **Train/Test Split:** stratified 80/20, `random_state=42`  
+5. **Baseline Model:** Logistic Regression → evaluate metrics & ROC AUC  
+6. **Refinement:** drop leaking features, hyperparameter tuning (CV), benchmark Random Forest  
 
 ---
 
-## Contributing
+## 🔢 Threshold & Prediction
 
-Contributions and suggestions are welcome! Please open an issue or submit a pull request.
+- **Optimal Cutoff:** 0.40 (maximizes F1 = ~0.93)  
+- **Inference:** call `predict_highscorer(df_new)` in `src/inference.py`  
+- **Output:** binary labels + probability scores for each input row  
 
 ---
 
-## License
+## 🤝 Contributing
 
-This project is released under the MIT License.
+Contributions are welcome!  
+1. Fork the repo  
+2. Create a feature branch  
+3. Submit a pull request  
+
+---
+
+## 📄 License
+
+Released under the **MIT License**.  
+Feel free to use, adapt, or build on top of this work!
+
+---
+
+*Made with ❤️ by Victoria R. Brito*
