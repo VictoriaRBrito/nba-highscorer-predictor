@@ -1,0 +1,42 @@
+# ─── Python bytecode and caches ───────────────────────────────────
+__pycache__/
+*.py[cod]
+
+# ─── Virtual environments ─────────────────────────────────────────
+.venv/
+env/
+ENV/
+
+# ─── Jupyter notebook checkpoints ─────────────────────────────────
+.ipynb_checkpoints/
+
+# ─── Data files ───────────────────────────────────────────────────
+# Ignore all raw data by default
+data/*
+# But keep the example CSV and the main dataset for inference
+!data/example_nba_stats.csv
+!data/nba_stats.csv
+
+# ─── Model artifacts ──────────────────────────────────────────────
+# Ignore all models by default
+models/*
+# But keep the final pickles needed for inference
+!models/highscorer_model.pkl
+!models/features_list.pkl
+!models/threshold.pkl
+
+# ─── Streamlit cache ──────────────────────────────────────────────
+.streamlit/
+
+# ─── IDE and editor files ────────────────────────────────────────
+.vscode/
+.idea/
+*.sublime-workspace
+*.swp
+
+# ─── OS-specific files ───────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ─── Logs and debugging ──────────────────────────────────────────
+*.log
