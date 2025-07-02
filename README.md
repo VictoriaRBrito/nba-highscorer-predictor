@@ -14,6 +14,7 @@ Predict whether an NBA player will drop **20+ points** in a game, end-to-end—f
 - [🛠️ Usage](#️-usage)  
   - [Notebook](#notebook)  
   - [Web App](#web-app)  
+- [📹 Demo](#-demo)  
 - [📂 Project Structure](#-project-structure)  
 - [🔍 Modeling Pipeline](#-modeling-pipeline)  
 - [🔢 Threshold & Prediction](#-threshold--prediction)  
@@ -79,25 +80,35 @@ pip install -r requirements.txt
 
 ---
 
+## 📹 Demo
+
+Watch the Streamlit app in action:
+
+![Streamlit Demo](assets/demo.gif)
+
+---
+
 ## 📂 Project Structure
 
 ```
 nba-highscorer-predictor/
-├── 📄 README.md
-├── 🐍 requirements.txt
-├── 🚫 .gitignore
-├── 🗄 data/
+├── assets/
+│   └── demo.gif
+├── data/
 │   ├── nba_stats.csv
 │   └── example_nba_stats.csv
-├── 📓 notebooks/
+├── notebooks/
 │   └── analysis.ipynb
-├── 💾 models/
+├── models/
 │   ├── highscorer_model.pkl
 │   ├── features_list.pkl
 │   └── threshold.pkl
-├── 📦 src/
+├── src/
 │   └── inference.py
-└── 🌐 app.py
+├── app.py
+├── requirements.txt
+├── .gitignore
+└── README.md
 ```
 
 ---
@@ -137,4 +148,4 @@ Feel free to use, adapt, or build on top of this work!
 
 ---
 
-*Made with ❤️ by Victoria R. Brito*
+*Made with ❤️ by Victoria R Brito*
